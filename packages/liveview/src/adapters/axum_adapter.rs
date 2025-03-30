@@ -25,7 +25,7 @@ fn transform_rx(message: Result<Message, axum::Error>) -> Result<Vec<u8>, LiveVi
     message
         .map_err(|_| LiveViewError::SendingFailed)?
         .into_text()
-        .map(|s| s.bytes())
+        .map(|s| s.as_bytes().to_vec())
         .map_err(|_| LiveViewError::SendingFailed)
 }
 
